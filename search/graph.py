@@ -78,16 +78,17 @@ class Graph:
             for x in range(len(g.nodes)):
                 nodes_on_shortest_path.append(predecessors[nodes_on_shortest_path[-1]])
                 if nodes_on_shortest_path[-1] == start:
+                    nodes_on_shortest_path.reverse()
                     return nodes_on_shortest_path
 
         #if there is an unreachable target node
         else:
             return None
 
-gg = Graph("data/test_empty.adjlist")
+gg = Graph("../data/disconnected_network.adjlist")
 
-print(gg.bfs('33483487', 'Charles Chiu'))
-
+print(gg.bfs('Steven Altschuler', 'Charles Chiu')) #, 'Charles Chiu'
+print("a")
 
 #plotting for debugging purposes
 
@@ -95,7 +96,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from networkx import nx_agraph
 
-wholegraph = nx.read_adjlist("data/tiny_network.adjlist", create_using=nx.DiGraph, delimiter=";")
+wholegraph = nx.read_adjlist("../data/disconnected_network.adjlist", create_using=nx.DiGraph, delimiter=";")
 
 nx.draw(wholegraph, with_labels=True, pos = nx.nx_agraph.graphviz_layout(wholegraph))
 #plt.show()
