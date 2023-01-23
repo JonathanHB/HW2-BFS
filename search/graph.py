@@ -84,7 +84,7 @@ class Graph:
         else:
             return None
 
-gg = Graph("../data/test_empty.adjlist")
+gg = Graph("data/test_empty.adjlist")
 
 print(gg.bfs('33483487', 'Charles Chiu'))
 
@@ -95,7 +95,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from networkx import nx_agraph
 
-wholegraph = nx.read_adjlist("../data/tiny_network.adjlist", create_using=nx.DiGraph, delimiter=";")
+wholegraph = nx.read_adjlist("data/tiny_network.adjlist", create_using=nx.DiGraph, delimiter=";")
 
 nx.draw(wholegraph, with_labels=True, pos = nx.nx_agraph.graphviz_layout(wholegraph))
 #plt.show()
