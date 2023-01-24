@@ -35,6 +35,10 @@ class Graph:
         if end is not None and end not in g.nodes:
             raise ValueError(f"ending node {end} not found in graph")
 
+        #if the target node is trivially reachable; added 1/24/23
+        if end is not None and start == end:
+            return [start]
+
         #queue to store the frontier of the breadth first search
         q = Queue(maxsize=0)
 
