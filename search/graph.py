@@ -75,7 +75,7 @@ class Graph:
 
         #if there is no target node
         if end is None:
-            return predecessors.keys() #nodes_visited_in_order
+            return list(predecessors.keys()) #nodes_visited_in_order
 
         #if there is a reachable target node
         elif end_reached:
