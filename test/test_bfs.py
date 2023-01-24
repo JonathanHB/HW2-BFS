@@ -20,7 +20,6 @@ def exception_assertion(test_input, tr_func, expected_exception):
 
     return err_handled
 
-#@pytest.fixture #decorator commented for testing
 def test_bfs_traversal():
     """
     TODO: Write your unit test for a breadth-first
@@ -31,7 +30,6 @@ def test_bfs_traversal():
     """
 
     bfs_correct = ['Steven Altschuler', '32036252', 'Lani Wu', '32042149', '31806696', '30727954', 'Hani Goodarzi', 'Luke Gilbert', 'Michael McManus', '33232663', '33483487', '31626775', '31540829', '32025019', '29700475', 'Charles Chiu', 'Martin Kampmann', 'Neil Risch', 'Nevan Krogan', 'Atul Butte', 'Michael Keiser', '33242416', '32790644', '34272374', '32353859', '30944313', '33765435', '31395880', 'Marina Sirota', '31486345']
-    #wholegraph = nx.read_adjlist("../data/tiny_network.adjlist", create_using=nx.DiGraph, delimiter=";")
 
     gtest = graph.Graph("../data/tiny_network.adjlist")
     bfs = gtest.bfs("Steven Altschuler")
@@ -41,11 +39,10 @@ def test_bfs_traversal():
     absent_node = '0'
     assert exception_assertion([absent_node, None], gtest.bfs, f"starting node {absent_node} not found in graph"), f"unit test for traversal part 2 failed; did not detect nonexistent starting node {absent_node}"
 
-    assert len(bfs_correct) == len(bfs), "unit test for traversal part 1 failed; traversal did not explore entire [accessible] graph"
+    assert len(bfs_correct) == len(bfs), "unit test for traversal part 3 failed; traversal did not explore entire [accessible] graph"
 
-    assert bfs_correct == bfs, "unit test for traversal part 2 failed; traversal did not explore graph in order"
+    assert bfs_correct == bfs, "unit test for traversal part 4 failed; traversal did not explore graph in order"
 
-#test_bfs_traversal()
 
 def test_bfs():
     """
