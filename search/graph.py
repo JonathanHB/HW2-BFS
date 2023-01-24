@@ -43,9 +43,9 @@ class Graph:
         q = Queue(maxsize=0)
 
         #track nodes visited thus far
-        nodes_visited_in_order = [start]
+        #nodes_visited_in_order = [start]
         #used to reconstruct shortest path
-        predecessors = {}
+        predecessors = {start: None}
         #determine connectivity
         end_reached = False
 
@@ -62,11 +62,11 @@ class Graph:
 
             #add each of the node's unvisited neighbors to the stack and the list of visited nodes
             for j in list(g.adj[qi]):
-                if j not in nodes_visited_in_order:
+                if j not in predecessors.keys():
                     q.put(j)
                     #track which node node j was reached from for shortest path reconstruction
                     predecessors[j] = qi
-                    nodes_visited_in_order.append(j)
+                    #nodes_visited_in_order.append(j)
 
                     #detect if/when the target node is reached and record that the graph is connected
                     if end is not None and j == end:
@@ -75,7 +75,7 @@ class Graph:
 
         #if there is no target node
         if end is None:
-            return nodes_visited_in_order
+            return predecessors.keys() #nodes_visited_in_order
 
         #if there is a reachable target node
         elif end_reached:
