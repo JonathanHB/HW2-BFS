@@ -1,5 +1,21 @@
+! [BuildStatus] (https://github.com/JonathanHB/HW2-BFS/workflows/HW2-BFS/badge.svg?event=push)
 # Assignment 2
 Breadth-first search
+
+Breadth first search (BFS) traverses a graph starting from a single node. It reads other nodes in order of their distance (measured by the minimum number of edges necessary to reach them) from the starting node.
+
+The BFS algorithm implemented here takes a starting node as an argument. It can also take an ending node as an optional argument.
+If only a starting node is passed as an argument, the BFS returns a list of all nodes in the graph which are reachable from the starting node in ascending order of their distance from the starting node.
+
+If both a starting and an ending node are passed as arguments, the BFS returns a list of the nodes forming the shortest path from the starting to the ending node, ordered from the starting node to the ending node. 
+If multiple equally short such paths exist, one is returned arbitrarily. If the ending node is not reachable from the starting node, the method returns None.
+Under the hood this works by running BFS until either the end node is reached or the entire (sub)graph reachable from the starting node has been explored without finding it. 
+As each node is reached, it is recorded which node it was reached from. When (and if) the end node is reached, the program follows the dictionary of which node each node was reached from 
+(each entry being sort of like an edge) backwards to the start node to reconstruct the shortest path.
+
+Beware that in directed graphs, the shortest path is not commutative (i.e. the shortest path from A to B need not also be the shortest path from B to A).
+
+The instructions below are retained for reference
 
 # Assignment Overview
 The purpose of this assignment is to get you comfortable working with graph structures and to implement a breadth-first search function to traverse the graph and find the shortest path between nodes.
