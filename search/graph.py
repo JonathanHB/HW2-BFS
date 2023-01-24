@@ -49,6 +49,9 @@ class Graph:
 
         #this range should be sufficient as each node will be visited only once by the outer loop
         for i in range(len(g.nodes)):
+            #beware that trying to get() from an empty queue freezes python rather than throwing an exception
+            if q.empty():
+                break
             # pop the oldest node off the stack
             # this must be (one of) the closest node(s)
             qi = str(q.get())
@@ -85,21 +88,23 @@ class Graph:
         else:
             return None
 
-gg = Graph("../data/disconnected_network.adjlist")
+#having code here messes up unit test execution for some reason
+#gg = Graph("../data/disconnected_network.adjlist")
 
-print(gg.bfs('Steven Altschuler', 'Charles Chiu')) #, 'Charles Chiu'
-print("a")
+#print(gg.bfs('Steven Altschuler', 'Charles Chiu')) #, 'Charles Chiu'
+#print("a")
 
 #plotting for debugging purposes
 
-import matplotlib
-import matplotlib.pyplot as plt
-from networkx import nx_agraph
+#import matplotlib
+#import matplotlib.pyplot as plt
+#from networkx import nx_agraph
 
-wholegraph = nx.read_adjlist("../data/disconnected_network.adjlist", create_using=nx.DiGraph, delimiter=";")
+#wholegraph = nx.read_adjlist("../data/disconnected_network.adjlist", create_using=nx.DiGraph, delimiter=";")
 
-nx.draw(wholegraph, with_labels=True, pos = nx.nx_agraph.graphviz_layout(wholegraph))
+#nx.draw(wholegraph, with_labels=True, pos = nx.nx_agraph.graphviz_layout(wholegraph))
 #plt.show()
+
 
 
 

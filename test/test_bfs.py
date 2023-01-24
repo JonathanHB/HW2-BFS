@@ -1,5 +1,8 @@
 # write tests for bfs
 import pytest
+import sys; print(sys.path)
+import search
+import search.graph
 from search import graph
 import networkx as nx
 
@@ -42,7 +45,7 @@ def test_bfs_traversal():
 
     assert bfs_correct == bfs, "unit test for traversal part 2 failed; traversal did not explore graph in order"
 
-test_bfs_traversal()
+#test_bfs_traversal()
 
 def test_bfs():
     """
@@ -61,11 +64,16 @@ def test_bfs():
     gtest = graph.Graph("../data/tiny_network.adjlist")
     bfs = gtest.bfs("Steven Altschuler", "Charles Chiu")
 
-    assert exception_assertion(['', None], graph.Graph("../data/empty_network.adjlist").bfs, "graph has no nodes"), "unit test for traversal part 1 failed; did not detect empty input graph"
+    assert exception_assertion(['', None], graph.Graph("../data/empty_network.adjlist").bfs, "graph has no nodes"), "unit test for path-finding part 1 failed; did not detect empty input graph"
 
     absent_node = '0'
-    assert exception_assertion([absent_node, None], gtest.bfs, f"starting node {absent_node} not found in graph"), f"unit test for traversal part 2 failed; did not detect nonexistent starting node {absent_node}"
-    assert exception_assertion(["Steven Altschuler", absent_node], gtest.bfs, f"ending node {absent_node} not found in graph"), f"unit test for traversal part 2 failed; did not detect nonexistent ending node {absent_node}"
+    assert exception_assertion([absent_node, None], gtest.bfs, f"starting node {absent_node} not found in graph"), f"unit test for path-finding part 2.0 failed; did not detect nonexistent starting node {absent_node}"
+    assert exception_assertion(["Steven Altschuler", absent_node], gtest.bfs, f"ending node {absent_node} not found in graph"), f"unit test for path-finding part 2.1 failed; did not detect nonexistent ending node {absent_node}"
 
+    #beware that if there are multiple equally short shortest paths and graph.py is updated to find a different one, this will fail
+    assert bfs_correct == bfs, "unit test for path-finding part 3 failed; did not correctly identify the shortest path"
 
-    assert bfs_correct == bfs, "unit test for traversal part 2 failed; traversal did not correctly identify the shortest path"
+    gtest2 = graph.Graph("../data/disconnected_network.adjlist")
+    bfs2 = gtest2.bfs("Steven Altschuler", "Charles Chiu")
+
+    assert bfs2 == None, "unit test for path-finding part 4 failed; did not recognize unreachable end node"
